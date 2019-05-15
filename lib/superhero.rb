@@ -10,7 +10,8 @@ class Superhero
     @@all
   end
 
-  def self.find_all_by_team(team_name)
+  def find_all_by_team(team_name)
     self.all.select{|s| s.team == team_name}
   end
+
 end

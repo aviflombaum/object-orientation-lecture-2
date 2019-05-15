@@ -1,9 +1,15 @@
 #!/usr/bin/env ruby
+# ^ line above tells the computer that this program is built in ruby
+# so you can run it via `./bin/superheros` and not just by explicitly
+# referencing the language via `ruby bin/superheroes.rb`.
 
+# Load our main model (class)
 require_relative '../lib/superhero'
 
+# Load some fake data
 require_relative '../db/seed.rb'
 
+# Our CLI
 puts "Welcome Superhero!"
 
 def main
@@ -30,6 +36,7 @@ def main
   end
 end
 
+# Stub these out, we don't need them yet.
 def index
   puts "You chose index!"
 end
@@ -57,4 +64,5 @@ def teams
   puts "The team base is: #{superheros_on_team.first.team_base}"
 end
 
+# Run our program
 main
