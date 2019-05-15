@@ -1,10 +1,14 @@
 #!/usr/bin/env ruby
+
+require 'pry'
+
 # ^ line above tells the computer that this program is built in ruby
 # so you can run it via `./bin/superheros` and not just by explicitly
 # referencing the language via `ruby bin/superheroes.rb`.
 
 # Load our main model (class)
 require_relative '../lib/superhero'
+require_relative '../lib/team'
 
 # Load some fake data
 require_relative '../db/seed.rb'
@@ -51,17 +55,18 @@ end
 
 def teams
   puts "Which team would you like info on?"
-  input = gets.strip
+  input = gets.strip # "X-Men"
 
-  superheros_on_team = Superhero.find_all_by_team(input)
-
+  # superheros_on_team = Superhero.find_all_by_team(input)
+  the_team = Team.find_by_name(input)
   puts ""
-  puts "Team has #{superheros_on_team.size} members:"
-  superheros_on_team.each.with_index(1) do |superhero, i|
-    puts "#{i}. #{superhero.supername} - #{superhero.name}"
+  puts "#{the_team.name}'s base is #{the_team.base}"
+
+  the_team.members.each do |superhero|
+    puts superhero.name
   end
 
-  puts "The team base is: #{superheros_on_team.first.team_base}"
+  binding.pry
 end
 
 # Run our program
