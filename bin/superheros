@@ -1,0 +1,60 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/superhero'
+
+require_relative '../db/seed.rb'
+
+puts "Welcome Superhero!"
+
+def main
+  puts "Main Menu: index, search, teams, new, and exit."
+  puts ""
+
+  input = gets.strip.downcase
+
+  case input
+  when "index"
+    index
+  when "search"
+    search
+  when "new"
+    new
+  when "teams"
+    teams
+  when "exit"
+    exit
+  else
+    puts "Invalid Input."
+    puts ""
+    main
+  end
+end
+
+def index
+  puts "You chose index!"
+end
+
+def search
+  puts "You chose search!"
+end
+
+def new
+  puts "You chose new!"
+end
+
+def teams
+  puts "Which team would you like info on?"
+  input = gets.strip
+
+  superheros_on_team = Superhero.find_all_by_team(input)
+
+  puts ""
+  puts "Team has #{superheros_on_team.size} members:"
+  superheros_on_team.each.with_index(1) do |superhero, i|
+    puts "#{i}. #{superhero.supername} - #{superhero.name}"
+  end
+
+  puts "The team base is: #{superheros_on_team.first.team_base}"
+end
+
+main
